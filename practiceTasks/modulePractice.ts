@@ -178,15 +178,6 @@ function processData(data:unknown):string | number{
 console.log("Task 11 output");
 console.log(processData('Eid Mubarak'));
 
-// Task 12: Write a function handleError that: Accepts a message: string. Throws an error with the given message. Use the never return type to indicate that this function never returns.
-
-function handleError(message:string):never {
-  console.log(message);
-  // throw new Error(message);
-}
-
-console.log("Task 12 output");
-console.log(handleError("An error occurred"));
 
 // Task 13: Create a generic function that: Accepts an array of any type. Returns a new array with duplicate values removed.
 
@@ -202,3 +193,56 @@ param.map((elem) =>{
 
 console.log("task 13 output");
 console.log(createGenericArray([3,4,6,7,8,7,8,9]));
+
+// Task 14: Write an asynchronous function that: Simulates fetching user data (containing name and age).Returns the data after a short delay.
+
+const fetchUserData = async():Promise<{name:string, age:number}>=>{
+  return new Promise((resolve)=> {
+  setTimeout(()=>{
+resolve({name:'John', age:24});
+}, 1000);
+});
+};
+
+fetchUserData().then(data => 
+{console.log("Task 14 output");
+  console.log(data)});
+
+// Task 15: Write a function isString(value: unknown): value is string that checks if a value is a string. Use this in another function printUpperCase(value: unknown): void that prints the value in uppercase if it’s a string.
+
+function isString(value:unknown):value is string{
+return typeof value === "string"
+}
+
+function printUpperCase (value:unknown): void{
+  if(isString(value)){
+  console.log((value as string).toUpperCase());
+  }
+else {
+  console.log("Not a string");
+}
+}
+
+console.log("Task 15 output");
+printUpperCase(6);
+
+// Task 16: Create a function that: Takes an object and a key. Returns the property value from the object based on the provided key. Use keyof to constrain the key to valid properties of the object.
+
+function getValidProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+console.log("Task 16 output");
+console.log(getValidProperty({name:"John", age:26, email:"john@gmail.com"}, 'name'));
+console.log(getValidProperty({name:"John", age:26, email:"john@gmail.com"}, 'email'));
+
+
+// Task 12: Write a function handleError that: Accepts a message: string. Throws an error with the given message. Use the never return type to indicate that this function never returns.
+
+function handleError(message:string):never {
+  console.log(message);
+  throw new Error(message);
+}
+
+console.log("Task 12 output");
+console.log(handleError("An error occurred"));

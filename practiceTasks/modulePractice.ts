@@ -40,7 +40,7 @@ const user :Person ={Name:"Jack Dawson", Address:"221/B, Baker Street, London", 
 console.log('Task3 output');
 console.log(user);
 
-//  Task 4:Define interfaces Book and Magazine. Create: A type that is a union of Book and Magazine. A type that is an intersection of Book and Magazine.
+//  Task 4: Define interfaces Book and Magazine. Create: A type that is a union of Book and Magazine. A type that is an intersection of Book and Magazine.
 
 interface Book {
     bookTitle:string;
@@ -77,3 +77,89 @@ console.log("Task 4 output");
 console.log(bookItem);
 console.log(mgzItem);
 console.log(comboItem);
+
+//  Task 5: Write a function that reverses a string.
+
+function reverseString (inputStr: string):string{
+  const reverseStr = inputStr.split('').reverse().join('');
+  return reverseStr;
+}
+console.log("Task 5 output");
+console.log(reverseString('hello'));
+
+// Task 6:  Write a function that uses the rest operator for variable-length arguments. Create a function that takes multiple numeric arguments (using the rest operator) and returns the sum of all arguments.
+
+function sumOfArray(...inputArr: number[]):number{
+return inputArr.reduce((total,val)=> total+val, 0);
+}
+console.log("Task 6 output");
+console.log(sumOfArray(5, 6, 7, 8));
+
+// Task 7: Create a function that accepts a parameter of type string | number. The function should: Return the length if the input is a string. Return the square if the input is a number.
+
+function typeAssertion(params:string | number):number{
+ if(typeof params ==="string")
+ {
+  return params.length;
+ }
+ else  {
+   return params * params;
+ }
+}
+
+console.log("Task 7 output");
+console.log(typeAssertion('hello Typescript'));
+
+// Task 8: Create a type AdminUser that is an intersection of: User with properties name and email. Admin with property adminLevel. Write a function describeAdmin(user: AdminUser): string that returns a description of the admin user.
+
+type User={name: string; email:string};
+type Admin ={adminLevel:string};
+
+type AdminUser = User & Admin;
+function describeAdmin(user:AdminUser):string{
+  return(`${user.name} is an Admin with ${user.adminLevel} role and email is ${user.email}`);
+};
+
+console.log('Task 8 output');
+const user1 ={name:"John", email:"john@gmail.com", adminLevel:"Super Admin"}
+console.log(describeAdmin(user1));
+
+// Task 9: Write a function getEmployeeCity(employee) that safely retrieves the city of an employee from a nested object using optional chaining.
+
+type Address = {
+  flat?: string;
+  road?: string;
+  city?: string;
+};
+
+type Employee = {
+  name: string;
+  email: string;
+  address?: Address;
+};
+const employeeInfo:Employee ={
+  name:"Sherlock Holmes",
+  email:"sh@detective.com",
+  address:{
+    flat:"221-B",
+    road:"Baker Street",
+    city:"London",
+  }
+}
+function getEmployeeCity(employee:Employee):string | undefined{
+  return employee?.address?.city;
+}
+
+console.log("task 9 output");
+console.log(getEmployeeCity(employeeInfo));
+
+// Task 10: Write a function getDisplayName(name: string | null | undefined): string that returns "Anonymous" if name is null or undefined.
+
+function getDisplayName(name: string | null | undefined):string{
+  return name?? "Anonymous";
+}
+
+console.log("Task 10 output");
+console.log(getDisplayName(undefined));
+
+

@@ -162,4 +162,43 @@ function getDisplayName(name: string | null | undefined):string{
 console.log("Task 10 output");
 console.log(getDisplayName(undefined));
 
+// Task 11: Write a function processData(data: unknown) that: Checks if data is a string and returns the uppercased version. If data is a number, returns the square of it.
 
+
+function processData(data:unknown):string | number{
+  if(typeof data === "string"){
+    return data.toUpperCase();
+  }
+  else if (typeof data === "number"){
+    return data*data;
+  }
+  else return 'Unsupported data type';
+}
+
+console.log("Task 11 output");
+console.log(processData('Eid Mubarak'));
+
+// Task 12: Write a function handleError that: Accepts a message: string. Throws an error with the given message. Use the never return type to indicate that this function never returns.
+
+function handleError(message:string):never {
+  console.log(message);
+  // throw new Error(message);
+}
+
+console.log("Task 12 output");
+console.log(handleError("An error occurred"));
+
+// Task 13: Create a generic function that: Accepts an array of any type. Returns a new array with duplicate values removed.
+
+const createGenericArray =<T> (param:T[]): T[]=>{
+let uniqueArr: T[] =[];
+param.map((elem) =>{
+  if(!uniqueArr.includes(elem)){
+    uniqueArr.push(elem);
+  }
+})
+  return uniqueArr;
+}
+
+console.log("task 13 output");
+console.log(createGenericArray([3,4,6,7,8,7,8,9]));

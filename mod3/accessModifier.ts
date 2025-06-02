@@ -9,9 +9,19 @@ class BankAccount{
         this.name=name;
         this._balance=balance;
     }
+
+    // setter method
+    set deposit(amount:number){
+this._balance= this._balance+amount;
+    }
     addDeposit(amount:number){
         this._balance= this._balance+amount;
     }
+
+    // getter method
+get balance(){ 
+    return this._balance;
+}
 
     getBalance(){
         return this._balance;
@@ -20,14 +30,19 @@ class BankAccount{
 
 // Instance of class will not get the private data
 const user1 = new BankAccount(1,'John', 50);
-user1.addDeposit(100);
-const result = user1.getBalance();
+
+// user1.addDeposit(100);
+user1.deposit=200;
+
+// const result = user1.getBalance();
+const result = user1.balance;
+
 console.log("The Balance is now:", result);
 
 // Encapsulation
 // Child class can extend and get the protected data
 class Student1 extends BankAccount{
     test(){
-this._balance;
+this._balance; // here will get the value of balance
     }
 }
